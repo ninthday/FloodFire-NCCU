@@ -1,0 +1,45 @@
+VBA Note
+
+1. 『Microsoft Excel 物件』的程式碼是可以直接對整個 Worksheet 操作的
+   例如對 Sheet1 有兩個代碼：Sub test1() 和 Sub test2()
+   則當選擇了 test1，執行後就會對整個 Worksheet 套用 test1 的內容，test2 相同
+   <example>
+   Sub test()
+	    Dim i As Integer
+	    i = 2
+	    Do
+	        Sheets("testing").Cells(i, 4) = Sheets("testing").Cells(i, 2)
+	        If i = 8 Then
+	            'GoTo Label
+	            Exit Do
+	        End If
+	        i = i + 1
+	    Loop
+	    'Label:
+	End Sub
+
+	<Result>
+	將 Sheet "testing" 的第 2 行值複製到第 3 行，並停在第 8 列完成後
+
+2. 『模組』的程式碼是可以像內建函數一樣直接在儲存格內輸入 =XXXX(...) 來使用的
+	<example>
+	Public Function myFunction(A, B)
+    	myFunction = (A + B) * 3
+	End Function
+	<Result>
+	當在儲存格中輸入 "=myFunction(2,4)"，可以得到 18 ((2+4)*3)
+
+3. 如果定義了一個新的模組，想要套用到『已經存在』的每個儲存格中，亦即 mapping，例如若已經有 1, 2, 4, 8 
+   定義了模組:
+   Public Function square(a)
+   	square = a * a
+   End Function
+   在 Excel 中只有插入模組(或函數)，這樣只是把模組插入到儲存格中，亦即結果為 1=square(...), 2=square(...), ...
+   如果要 mapping，可以搭配物件腳本來操作
+   例如可定義物件腳本
+   Sub try()
+    Dim i As Integer
+    For i = 1 To 4
+        Sheets("工作表1").Cells(i, 1) = square(Sheets("工作表1").Cells(i, 1))  '這裡直接就可以套用模組函數
+    Next i
+   End Sub
