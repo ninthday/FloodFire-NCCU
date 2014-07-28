@@ -10,11 +10,11 @@ Sub ToTaiwan()
     sheet = "[sheet_tobe_stranslate]"
     date_column = [column_of_date]
     
-    For i = 2 To 6953
+    For i = 2 To [final_row]
     
         parse = Split(Sheets(sheet).Cells(i, date_column))
         
-        '²Õ¦X¦¨ YYYY/MM/DD  hh:mm:ss PM/AM ®æ¦¡¡A¥H«K²Ö¥[¤p®É«á¦Û°Ê¸ó¤é
+        'çµ„åˆæˆ YYYY/MM/DD  hh:mm:ss PM/AM æ ¼å¼ï¼Œä»¥ä¾¿ç´¯åŠ å°æ™‚å¾Œè‡ªå‹•è·¨æ—¥
         '[ parse(5)/parse(1)/parse(2) parse(3) ]
         
         Dim formatted As String
