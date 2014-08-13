@@ -13,6 +13,6 @@ Postscript
 ===
 1. Big5/GBD vs UTF8 可以用 notepad++ 的 『編碼\轉換至 UTF-8 碼格式』處理
 
-===
 PhpStringHelper
+===
 - PHP 字串處理的 Library
