@@ -4,5 +4,5 @@ description="URL Fetcher"
 version=1
 document_format=text
 document_type=UrlFetcherData
-command=./url-fetcher.sh %OUTPUT_FOLDER% %QUERY% %START_DATE% %END_DATE% %WORKING_FOLDER% 10 %MAX_DOCS%
+command=./url-fetcher.sh %OUTPUT_FOLDER% %QUERY% %WORKING_FOLDER%
 
