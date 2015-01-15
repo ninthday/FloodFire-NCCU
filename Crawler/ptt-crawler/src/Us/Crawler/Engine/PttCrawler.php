@@ -87,7 +87,8 @@ class PttCrawler
 				if ($this->storage->GetArticleByArticleId($article_id)) {
 					$this->error_output("notice! article: " . $article_id . " ({$item['date']}) has been in database \n");
 					// 檢查是否抓到上次最後一篇
-					if ($this->config["stop-on-duplicate"]) {
+					if ($this->config["stop-on-duplicate"] && $i < ($last_page - 1)) {
+						// 頭兩頁不因為重複而停止
 						$is_stop = true;
 						$state |= self::STATE_DUPLICATED;
 					}
@@ -101,7 +102,8 @@ class PttCrawler
 					continue;
 				}
 				// 略過已到設定日期文章
-				if ($this->is_date_over($item["date"])) {
+				if ($this->is_date_over($item["date"]) && $i < ($last_page - 1)) {
+					// 頭兩頁不因為過期而停止
 					$this->error_output("notice! article: " . $item["url"] . " ({$item['date']} is earlier than " . $this->config["stop-date"] . " \n");
 					$is_stop = true;
 					$state |= self::STATE_DATE_REACHED;
@@ -199,7 +201,7 @@ class PttCrawler
 		foreach ($dom->find('div[class=title] a, div[class=date], div[class=author]') as $element) {
 			$count++;
 			$post = array();
-			if ($count % 3 == 1) { // FIXME kind oetitlf ugly
+			if ($count % 3 == 1) { // FIXME kind of ugly
 				$post_temp["url"] = str_replace(array("/bbs/" . $this->board_name . "/", ".html"), "", $element->href); // FIXME this should be called article_id instead of url
 				$post_temp["title"] = $element->plaintext;
 				// 過濾被刪除文章
