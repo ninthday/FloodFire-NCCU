@@ -1,10 +1,8 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
-
 ### What is this repository for? ###
 
-* craw data from ptt(web based)
+* crawl data from ptt web
 * save data into mysql DB
 
 ### How do I get start? ###
