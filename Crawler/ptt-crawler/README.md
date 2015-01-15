@@ -30,4 +30,6 @@ This README would normally document whatever steps are necessary to get your app
 
 ### LICENSE
 
+Copyright NCCU FloodFire Project
+
 [GPLv3](http://www.gnu.org/licenses/gpl.txt)
