@@ -1,0 +1,1 @@
+ALTER TABLE comment ADD INDEX idx_article_id (article_id);

@@ -1,0 +1,1 @@
+alter table article modify author varchar(13);
